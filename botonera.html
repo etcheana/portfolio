@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Botonera de Sonidos</title>
+  <link rel="stylesheet" href="botonera.css">
+ 
+</head>
+
+<body>
+
+  <a href="portfolio.html" class="btn-volver">← Volver</a>
+
+  <h1>Botonera de Sonidos</h1>
+
+  <div class="botonera">
+    <button id="boton1" class="boton-sonido">🐱 Gato</button>
+    <button id="boton2" class="boton-sonido">🦟 Mosquito</button>
+    <button id="boton3" class="boton-sonido">🐬 Delfín</button>
+    <button id="boton4" class="boton-sonido">🐶 Perro</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const audio1 = new Audio('./sonidos/gato.mp3');
+      const audio2 = new Audio('./sonidos/mosquito.mp3');
+      const audio3 = new Audio('./sonidos/delfin.mp3');
+      const audio4 = new Audio('./sonidos/perro.mp3');
+
+      const botones = [
+        { id: 'boton1', sonido: audio1 },
+        { id: 'boton2', sonido: audio2 },
+        { id: 'boton3', sonido: audio3 },
+        { id: 'boton4', sonido: audio4 }
+      ];
+
+      function desactivarTodos() {
+        botones.forEach(({ id }) => {
+          const b = document.getElementById(id);
+          b.classList.remove('activo');
+        });
+      }
+
+      botones.forEach(({ id, sonido }) => {
+        const boton = document.getElementById(id);
+
+        sonido.addEventListener('ended', () => {
+          boton.classList.remove('activo');
+        });
+
+        boton.addEventListener('click', () => {
+          if (!sonido.paused) {
+            sonido.pause();
+            sonido.currentTime = 0;
+            boton.classList.remove('activo');
+          } else {
+            botones.forEach(({ sonido: s, id: otherId }) => {
+              if (s !== sonido) {
+                s.pause();
+                s.currentTime = 0;
+                document.getElementById(otherId).classList.remove('activo');
+              }
+            });
+
+            sonido.play();
+            boton.classList.add('activo');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora Básica</title>
+ <link rel="stylesheet" href="calculadora.css">
+</head>
+<body>
+
+  <a href="portfolio.html" class="btn-volver">← Volver</a>
+
+  <div id="calculadora">
+    <h2 style="text-align:center; margin-bottom: 15px; color:#2e7d32;">CALCULADORA</h2>
+    <input type="text" id="display" disabled />
+
+    <div class="grid">
+      <button class="btn" data-val="7">7</button>
+      <button class="btn" data-val="8">8</button>
+      <button class="btn" data-val="9">9</button>
+      <button class="btn op" data-val="/">÷</button>
+
+      <button class="btn" data-val="4">4</button>
+      <button class="btn" data-val="5">5</button>
+      <button class="btn" data-val="6">6</button>
+      <button class="btn op" data-val="*">×</button>
+
+      <button class="btn" data-val="1">1</button>
+      <button class="btn" data-val="2">2</button>
+      <button class="btn" data-val="3">3</button>
+      <button class="btn op" data-val="-">−</button>
+
+      <button class="btn" data-val="0">0</button>
+      <button class="btn" data-val=".">.</button>
+      <button class="btn" id="clear">C</button>
+      <button class="btn op" data-val="+">+</button>
+
+      <button class="btn" id="equals">=</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const display = document.getElementById('display');
+      const buttons = document.querySelectorAll('#calculadora .btn');
+      let currentInput = '';
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const val = button.getAttribute('data-val');
+
+          if(button.id === 'clear'){
+            currentInput = '';
+            display.value = '';
+            return;
+          }
+
+          if(button.id === 'equals'){
+            try {
+              let result = eval(currentInput);
+              display.value = result;
+              currentInput = result.toString();
+            } catch {
+              display.value = 'Error';
+              currentInput = '';
+            }
+            return;
+          }
+
+          if(val === '.') {
+            const parts = currentInput.split(/[\+\-\*\/]/);
+            if(parts[parts.length - 1].includes('.')) return;
+          }
+
+          if(['+', '-', '*', '/'].includes(val)) {
+            if(currentInput === '' || ['+', '-', '*', '/'].includes(currentInput.slice(-1))) return;
+          }
+
+          currentInput += val;
+          display.value = currentInput;
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

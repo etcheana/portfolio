@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Portfolio</title>
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre">Sobre mí</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio" class="bienvenida">
+    <div class="bienvenida-contenido">
+      <img src="imagenes/yo.jpg" alt="Foto de Ana" />
+      <div>
+        <h1>¡Hola! Soy Ana Etchebarne</h1>
+        <p>Este es mi espacio donde muestro lo que sé hacer con diseño y código.</p>
+        <p>Acá vas a encontrar algunos proyectos, las cosas que manejo y cómo contactarme.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <h2>Sobre mí</h2>
+    <p style="font-size: 20px;">Soy Ana, estudio Desarrollo de Software en UADE. Me gusta programar y aprender cosas nuevas, aunque no siempre sea fácil.
+
+Me gustan mucho los gatos y cada actividad que hago la suelo acompañar con musica para relajarme.
+
+En mis proyectos trato de que todo funcione sin vueltas y sea fácil de usar.</p>
+  </section>
+
+  <section id="proyectos" class="proyectos">
+    <h2>Proyectos en JavaScript</h2>
+
+    <div class="card">
+      <h3>Calculadora</h3>
+      <button onclick="window.location.href='calculadora.html'">Ver proyecto</button>
+    </div>
+
+    <div class="card">
+      <h3>Galería de imágenes</h3>
+      <button onclick="window.location.href='galeria.html'">Ver proyecto</button>
+    </div>
+
+    <div class="card">
+      <h3>Botonera de sonidos</h3>
+      <button onclick="window.location.href='botonera.html'">Ver proyecto</button>
+    </div>
+  </section>
+
+  <section id="habilidades" class="habilidades">
+    <h2>Habilidades y CV</h2>
+
+    <div class="barra-habilidad">
+      <span>JavaScript <span class="porcentaje">40%</span></span>
+      <div class="barra">
+        <div class="barra-llenada" style="width: 0;"></div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="barra-habilidad">
+      <span>CSS <span class="porcentaje">60%</span></span>
+      <div class="barra">
+        <div class="barra-llenada" style="width: 0;"></div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="barra-habilidad">
+      <span>HTML <span class="porcentaje">60%</span></span>
+      <div class="barra">
+        <div class="barra-llenada" style="width: 0;"></div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="barra-habilidad">
+      <span>Python <span class="porcentaje">70%</span></span>
+      <div class="barra">
+        <div class="barra-llenada" style="width: 0;"></div>
+      </div>
+    </div>
+
+    <p><strong>Formación:</strong> Estudiante de Diseño y Desarrollo Web (2025)</p>
+  </section>
+
+  <section id="contacto" class="info-contacto">
+    <h2>Contacto</h2>
+    <div class="contacto-bloques">
+      <div class="bloque">
+        <h3>📧 Email</h3>
+        <p>anaetchebarne2007@gmail.com</p>
+      </div>
+      <div class="bloque">
+        <h3>📱 Teléfono</h3>
+        <p>+54 9 11 2523 3657</p>
+      </div>
+      <div class="bloque">
+        <h3>💼 GitHub</h3>
+        <p><a href="https://github.com/etcheana" target="_blank" rel="noopener noreferrer">github.com/etcheana</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Ana Etche. Todos los derechos reservados.</p>
+    <div class="redes">
+      <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="#" target="_blank" rel="noopener noreferrer">Behance</a>
+    </div>
+  </footer>
+
+  <button id="btnSubir" title="Subir arriba">⬆️</button>
+
+  <script>
+    const btnSubir = document.getElementById("btnSubir");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        btnSubir.style.display = "block";
+      } else {
+        btnSubir.style.display = "none";
+      }
+    });
+
+    btnSubir.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const barras = document.querySelectorAll(".barra-llenada");
+      const porcentajes = [40, 60, 60, 70]; 
+
+      barras.forEach((barra, i) => {
+        setTimeout(() => {
+          barra.style.width = porcentajes[i] + "%";
+        }, 200);
+      });
+    });
+  </script>
+</body>
+</html>

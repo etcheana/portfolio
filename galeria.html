@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería</title>
+ <link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+
+ <a href="portfolio.html" class="btn-volver">← Volver</a>
+
+  <div class="contenedor-galeria">
+    <h2>Galería de Imágenes</h2>
+
+    <div class="galeria">
+    </div>
+  </div>
+
+  <div class="lightbox">
+    <img class="lightbox-img" src="" alt="Imagen ampliada" />
+    <div>
+      <button class="lightbox-btn prev">← Anterior</button>
+      <button class="lightbox-btn next">Siguiente →</button>
+    </div>
+  </div>
+
+  <script>
+    const galeria = document.querySelector('.galeria');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const prevBtn = document.querySelector('.lightbox-btn.prev');
+    const nextBtn = document.querySelector('.lightbox-btn.next');
+
+    const totalImagenes = 12;
+    let imagenes = [];
+    let currentIndex = 0;
+
+    for(let i=1; i<=totalImagenes; i++){
+      const div = document.createElement('div');
+      const img = document.createElement('img');
+      img.src = `imagenes/img${i}.jpg`;
+      img.alt = `Imagen ${i}`;
+      imagenes.push(img);
+      div.appendChild(img);
+      galeria.appendChild(div);
+    }
+
+    galeria.addEventListener('click', e => {
+      if(e.target.tagName === 'IMG'){
+        currentIndex = imagenes.indexOf(e.target);
+        mostrarImagen(currentIndex);
+        lightbox.style.display = 'flex';
+      }
+    });
+
+    function mostrarImagen(idx){
+      currentIndex = (idx + imagenes.length) % imagenes.length;
+      lightboxImg.src = imagenes[currentIndex].src;
+    }
+
+    prevBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      mostrarImagen(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      mostrarImagen(currentIndex + 1);
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+  </script>
+
+</body>
+</html>
+
