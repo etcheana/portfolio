@@ -212,6 +212,52 @@
       text-align: center;
       padding: 25px 20px;
     }
+footer {
+  background-color: #2e7d32;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+footer p {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+}
+
+footer .redes {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+footer .redes a {
+  outline: none;
+  box-shadow: none;
+  display: inline-block;
+}
+
+footer .redes a:focus-visible {
+  outline: 2px solid #66bb6a;
+  outline-offset: 4px;
+}
+
+footer .redes a img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  display: block;
+  border: none;
+}
+
+footer .redes a img:hover,
+footer .redes a img:focus {
+  filter: brightness(0.8);
+  outline: none;
+  box-shadow: none;
+}
 
     .redes a {
       color: #fff;
@@ -267,4 +313,3 @@
         padding: 0 20px;
       }
     }
- 
